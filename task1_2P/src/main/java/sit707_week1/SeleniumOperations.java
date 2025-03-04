@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.Dimension;
 
 /**
- * @author Ahsan Habib
+ * @author Ahsan Habib modified by Keerthana Vijekumar
  */
 public class SeleniumOperations {
 	
