@@ -74,10 +74,10 @@ public class SeleniumOperations {
 	        emailField.sendKeys("s224719679@example.com"); // Dummy email
 
 	        WebElement passwordField = driver.findElement(By.id("password"));
-	        passwordField.sendKeys("Password@123"); // Dummy password
+	        passwordField.sendKeys("Password123"); // Dummy password
 
 	        WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
-	        confirmPasswordField.sendKeys("Password@123"); // Dummy confirm password	
+	        confirmPasswordField.sendKeys("Password123"); // Dummy confirm password	
 	        
 		
 		/*
@@ -128,7 +128,7 @@ public class SeleniumOperations {
 	    emailField.sendKeys("s224719679@example.com"); // Dummy email
 
 	    WebElement passwordField = driver.findElement(By.id("password")); // Use the correct id
-	    passwordField.sendKeys("Password@321"); // Dummy password
+	    passwordField.sendKeys("Password321"); // Dummy password
 
 	    WebElement firstNameField = driver.findElement(By.id("firstName")); // Use the correct id
 	    firstNameField.sendKeys("Keerthana"); // Dummy first name
