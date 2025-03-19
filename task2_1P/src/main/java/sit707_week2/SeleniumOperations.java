@@ -17,7 +17,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * 
  * Details in Selenium documentation https://www.selenium.dev/documentation/webdriver/elements/locators/
  * 
- * @author Ahsan Habib
+ * @author Ahsan Habib modified by Keerthana Vijekumar
  */
 public class SeleniumOperations {
 
@@ -65,19 +65,19 @@ public class SeleniumOperations {
 		 * Find following input fields and populate with values
 		 */
 		 	WebElement lastNameField = driver.findElement(By.id("lastname"));
-	        lastNameField.sendKeys("Vijekumar"); // Dummy last name
+	        lastNameField.sendKeys("Vijekumar"); 
 
 	        WebElement phoneField = driver.findElement(By.id("phoneNumber"));
-	        phoneField.sendKeys("0412345678"); // Dummy phone number
+	        phoneField.sendKeys("0412345678"); 
 
 	        WebElement emailField = driver.findElement(By.id("email"));
-	        emailField.sendKeys("s224719679@example.com"); // Dummy email
+	        emailField.sendKeys("s224719679@example.com"); 
 
 	        WebElement passwordField = driver.findElement(By.id("password"));
-	        passwordField.sendKeys("Password123"); // Dummy password
+	        passwordField.sendKeys("Password123"); 
 
 	        WebElement confirmPasswordField = driver.findElement(By.id("confirmPassword"));
-	        confirmPasswordField.sendKeys("Password123"); // Dummy confirm password	
+	        confirmPasswordField.sendKeys("Password123"); 	
 	        
 		
 		/*
@@ -123,18 +123,18 @@ public class SeleniumOperations {
 	    // Load the webpage
 	    driver.get(url);
 
-	    // Step 4: Locate and populate input fields with dummy data
-	    WebElement emailField = driver.findElement(By.id("uid")); // Use the correct id
-	    emailField.sendKeys("s224719679@example.com"); // Dummy email
+	    // Step 4: Locate and populate input fields 
+	    WebElement emailField = driver.findElement(By.id("uid")); 
+	    emailField.sendKeys("s224719679@example.com"); 
 
-	    WebElement passwordField = driver.findElement(By.id("password")); // Use the correct id
-	    passwordField.sendKeys("Password321"); // Dummy password
+	    WebElement passwordField = driver.findElement(By.id("password")); 
+	    passwordField.sendKeys("Password321"); 
 
-	    WebElement firstNameField = driver.findElement(By.id("firstName")); // Use the correct id
-	    firstNameField.sendKeys("Keerthana"); // Dummy first name
+	    WebElement firstNameField = driver.findElement(By.id("firstName")); 
+	    firstNameField.sendKeys("Keerthana"); 
 
-	    WebElement lastNameField = driver.findElement(By.id("lastName")); // Use the correct id
-	    lastNameField.sendKeys("Vijekumar"); // Dummy last name
+	    WebElement lastNameField = driver.findElement(By.id("lastName")); 
+	    lastNameField.sendKeys("Vijekumar"); 
 
 
 	    //Locate and click the "Create account" button using data-locator

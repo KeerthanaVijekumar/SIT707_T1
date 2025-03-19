@@ -2,7 +2,7 @@ package sit707_week2;
 
 /**
  * Hello world!
- * @author Ahsan Habib
+ * @author Ahsan Habib modified by Keerthana Vijekumar
  */
 public class Main 
 {
