@@ -1,17 +1,19 @@
 package web.service;
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import java.util.concurrent.TimeUnit;
+
+//Keerthana Vijekumar
 
 public class LoginServiceTest {
 
@@ -25,69 +27,99 @@ public class LoginServiceTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    private void fillForm(WebDriver driver, String username, String password, String dob) {
-        driver.findElement(By.name("username")).clear();
-        driver.findElement(By.name("username")).sendKeys(username);
-
-        driver.findElement(By.name("passwd")).clear();
-        driver.findElement(By.name("passwd")).sendKeys(password);
-
-        // Clear DOB field using JavaScript and only fill if dob is not empty
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("document.getElementsByName('dob')[0].value = '';");
-        if (!dob.isEmpty()) {
-            js.executeScript("document.getElementsByName('dob')[0].value = arguments[0];", dob);
-        }
-
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("submit"))).click();
-    }
-
-
-
     @Test
     public void testLoginSuccess() {
         driver.get(loginUrl);
-        fillForm(driver, "keerthana", "keerthana_pass", "1997-07-17");
 
-        new WebDriverWait(driver, 5)
-            .until(ExpectedConditions.or(
+        driver.findElement(By.name("username")).sendKeys("keerthana");
+        driver.findElement(By.name("passwd")).sendKeys("keerthana_pass");
+        driver.findElement(By.name("dob")).sendKeys("1997-07-17");
+
+        driver.findElement(By.name("submit")).click();
+
+        new WebDriverWait(driver, 5).until(ExpectedConditions.or(
                 ExpectedConditions.titleIs("success"),
                 ExpectedConditions.titleIs("fail")
-            ));
+        ));
 
         assertEquals("success", driver.getTitle());
+    }
+
+    @Test
+    public void testEmptyFields() {
+        driver.get(loginUrl);
+
+        driver.findElement(By.name("username")).sendKeys("");
+        driver.findElement(By.name("passwd")).sendKeys("");
+        driver.findElement(By.name("dob")).sendKeys("");
+
+        driver.findElement(By.name("submit")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 5);
+        wait.until(ExpectedConditions.or(
+            ExpectedConditions.titleIs("success"),
+            ExpectedConditions.titleIs("fail")
+        ));
+
+        String actualTitle = driver.getTitle();
+        System.out.println("Title for empty fields test = " + actualTitle);  // 👈 debug output
+        assertEquals("fail", actualTitle);
     }
 
 
     @Test
     public void testInvalidUsername() {
         driver.get(loginUrl);
-        fillForm(driver,"wronguser", "keerthana_pass", "1997-07-17");
+
+        driver.findElement(By.name("username")).sendKeys("wronguser");
+        driver.findElement(By.name("passwd")).sendKeys("keerthana_pass");
+        driver.findElement(By.name("dob")).sendKeys("1997-07-17");
+
+        driver.findElement(By.name("submit")).click();
+
+        new WebDriverWait(driver, 5).until(ExpectedConditions.or(
+                ExpectedConditions.titleIs("success"),
+                ExpectedConditions.titleIs("fail")
+        ));
+
         assertEquals("fail", driver.getTitle());
     }
 
     @Test
     public void testInvalidPassword() {
         driver.get(loginUrl);
-        fillForm(driver,"keerthana", "wrong_pass", "1997-07-17");
+
+        driver.findElement(By.name("username")).sendKeys("keerthana");
+        driver.findElement(By.name("passwd")).sendKeys("wrong_pass");
+        driver.findElement(By.name("dob")).sendKeys("1997-07-17");
+
+        driver.findElement(By.name("submit")).click();
+
+        new WebDriverWait(driver, 5).until(ExpectedConditions.or(
+                ExpectedConditions.titleIs("success"),
+                ExpectedConditions.titleIs("fail")
+        ));
+
         assertEquals("fail", driver.getTitle());
     }
 
     @Test
     public void testInvalidDOB() {
         driver.get(loginUrl);
-        fillForm(driver,"keerthana", "keerthana_pass", "2000-01-01");
+
+        driver.findElement(By.name("username")).sendKeys("keerthana");
+        driver.findElement(By.name("passwd")).sendKeys("keerthana_pass");
+        driver.findElement(By.name("dob")).sendKeys("2000-01-01");
+
+        driver.findElement(By.name("submit")).click();
+
+        new WebDriverWait(driver, 5).until(ExpectedConditions.or(
+                ExpectedConditions.titleIs("success"),
+                ExpectedConditions.titleIs("fail")
+        ));
+
         assertEquals("fail", driver.getTitle());
     }
-
-    @Test
-    public void testEmptyFields() {
-        driver.get(loginUrl);
-        fillForm(driver, "", "", "");
-        assertEquals("fail", driver.getTitle());
-    }
-
 
     @After
     public void tearDown() {
