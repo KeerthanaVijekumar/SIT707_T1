@@ -62,7 +62,7 @@ public class LoginServiceTest {
         ));
 
         String actualTitle = driver.getTitle();
-        System.out.println("Title for empty fields test = " + actualTitle);  // 👈 debug output
+        System.out.println("Title for empty fields test = " + actualTitle);  
         assertEquals("fail", actualTitle);
     }
 
