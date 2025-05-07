@@ -12,31 +12,23 @@ public class DateUtil {
         try {
             this.date = LocalDate.of(year, month, day);
         } catch (Exception e) {
-            throw new RuntimeException("Invalid date: " + day + "/" + month + "/" + year);
+            throw new RuntimeException("Invalid input date: " + day + "/" + month + "/" + year);
         }
     }
 
-    public void calculateNextWorkingDay() {
+    public void nextBusinessDay() {
         date = date.plusDays(1);
         while (date.getDayOfWeek() == DayOfWeek.SATURDAY || date.getDayOfWeek() == DayOfWeek.SUNDAY) {
             date = date.plusDays(1);
         }
     }
 
-    public int getDay() {
-        return date.getDayOfMonth();
-    }
-
-    public int getMonth() {
-        return date.getMonthValue();
-    }
-
-    public int getYear() {
-        return date.getYear();
-    }
+    public int getDay() { return date.getDayOfMonth(); }
+    public int getMonth() { return date.getMonthValue(); }
+    public int getYear() { return date.getYear(); }
 
     @Override
     public String toString() {
-        return date.format(DateTimeFormatter.ofPattern("d/M/yyyy"));
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }
