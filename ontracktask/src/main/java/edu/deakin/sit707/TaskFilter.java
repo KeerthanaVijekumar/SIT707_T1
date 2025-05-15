@@ -9,7 +9,8 @@ public class TaskFilter {
         "Distinction", 3,
         "HD", 4
     );
-//filter 
+
+    // For optional usage
     public static List<Task> filterTasksByGrade(String targetGrade, List<Task> allTasks) {
         int maxLevel = gradeMap.getOrDefault(targetGrade, 0);
         List<Task> result = new ArrayList<>();
@@ -20,9 +21,17 @@ public class TaskFilter {
         }
         return result;
     }
-    
+
+    // ✅ Working version for test cases
     public List<Task> filterByTargetGrade(List<Task> tasks, String grade) {
-        // Force a failing return to test CI failure
-        return new ArrayList<>(); // returns empty list, causing test failure
+        int maxLevel = gradeMap.getOrDefault(grade, 0);
+        List<Task> result = new ArrayList<>();
+        for (Task t : tasks) {
+            int taskLevel = gradeMap.getOrDefault(t.getGrade(), 0);
+            if (taskLevel != 0 && taskLevel <= maxLevel) {
+                result.add(t);
+            }
+        }
+        return result;
     }
 }
