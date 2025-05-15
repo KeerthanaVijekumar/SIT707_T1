@@ -20,4 +20,9 @@ public class TaskFilter {
         }
         return result;
     }
+    
+    public List<Task> filterByTargetGrade(List<Task> tasks, String grade) {
+        // Force a failing return to test CI failure
+        return new ArrayList<>(); // returns empty list, causing test failure
+    }
 }
