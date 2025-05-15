@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 public class TaskFilterTest {
 	//Pass Test Cases
+	
+	//Test only Pass tasks when pass selected
 	 @Test
 	    public void testFilterByTargetGrade_PassOnly() {
 	        List<Task> tasks = Arrays.asList(
@@ -24,6 +26,7 @@ public class TaskFilterTest {
 	        assertFalse(result.contains(new Task(2, "Credit")));
 	    }
 
+	 //When credit select show both pass and credit tasks
 	    @Test
 	    public void testFilterByTargetGrade_CreditIncludesPass() {
 	        List<Task> tasks = Arrays.asList(
@@ -40,6 +43,7 @@ public class TaskFilterTest {
 	        assertTrue(result.contains(new Task(2, "Credit")));
 	    }
 
+	    //Test that selecting "HD" grade includes all valid task grade
 	    @Test
 	    public void testFilterByTargetGrade_HDIncludesAll() {
 	        List<Task> tasks = Arrays.asList(
@@ -55,6 +59,7 @@ public class TaskFilterTest {
 	        assertEquals(4, result.size());
 	    }
 
+	    //Test that an empty task list input results in an empty output.
 	    @Test
 	    public void testFilterWithEmptyList() {
 	        List<Task> tasks = new ArrayList<>();
@@ -65,6 +70,7 @@ public class TaskFilterTest {
 	        assertTrue(result.isEmpty());
 	    }
 
+	    //Test that tasks with unknown grade values are ignored and don't break filtering.
 	    @Test
 	    public void testFilterWithUnknownGradeInList() {
 	        List<Task> tasks = Arrays.asList(
@@ -80,6 +86,8 @@ public class TaskFilterTest {
 	        assertTrue(result.contains(new Task(1, "Pass")));
 	        assertTrue(result.contains(new Task(3, "Credit")));
 	    }
+	    
+	    //Test that selecting a grade not in the grade map results in no matches.
 
 	    @Test
 	    public void testFilterWithInvalidTargetGrade() {
@@ -94,6 +102,7 @@ public class TaskFilterTest {
 	        assertTrue(result.isEmpty());
 	    }
 
+	    //Test that duplicate task grades are all correctly included.
 	    @Test
 	    public void testFilterWithDuplicates() {
 	        List<Task> tasks = Arrays.asList(
@@ -109,6 +118,8 @@ public class TaskFilterTest {
 	        assertTrue(result.contains(new Task(1, "Credit")));
 	        assertTrue(result.contains(new Task(2, "Credit")));
 	    }
+	    
+	    // Test that grade names are case-sensitive. Lowercase input should be ignored.
 
 	    @Test
 	    public void testCaseSensitivityInGrades() {
@@ -124,7 +135,8 @@ public class TaskFilterTest {
 	        assertTrue(result.contains(new Task(2, "Credit")));
 	    }
 
-
+	    
+//Failure Test Cases
     // Intentionally failing: assumes Pass includes Credit — simulating a bug
 //    @Test
 //    public void testFilterByTargetGrade_FailIfCreditIncludedForPass() {
