@@ -11,6 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ontracktask
+
     steps:
       - uses: actions/checkout@v3
 
@@ -18,15 +22,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-<<<<<<< HEAD
-
-      - name: Build with Maven
-        run: mvn clean test
-
-# Triggered to test workflow connection
-=======
           distribution: 'temurin'
 
       - name: Build with Maven
         run: mvn clean test
->>>>>>> branch 'main' of https://github.com/KeerthanaVijekumar/SIT707_T1.git
