@@ -135,6 +135,32 @@ public class TaskFilterTest {
 	        assertTrue(result.contains(new Task(2, "Credit")));
 	    }
 
+	    //Functional test case
+	    @Test
+	    public void testFilterByTargetGrade_FunctionalFlow() {
+	        // Simulating a real-world scenario where a student selects "Credit"
+	        List<Task> allTasks = Arrays.asList(
+	            new Task(101, "Pass"),
+	            new Task(102, "Credit"),
+	            new Task(103, "Distinction"),
+	            new Task(104, "HD"),
+	            new Task(105, "UnknownGrade") // should be ignored
+	        );
+
+	        TaskFilter filter = new TaskFilter();
+	        List<Task> filteredTasks = filter.filterByTargetGrade(allTasks, "Credit");
+
+	        // Expected: Only "Pass" and "Credit" tasks should be returned
+	        List<Task> expectedTasks = Arrays.asList(
+	            new Task(101, "Pass"),
+	            new Task(102, "Credit")
+	        );
+
+	        // Functional check: returned list matches expected content and size
+	        assertEquals(expectedTasks.size(), filteredTasks.size());
+	        assertTrue(filteredTasks.containsAll(expectedTasks));
+	    }
+
 	    
 //Failure Test Cases
     // Intentionally failing: assumes Pass includes Credit — simulating a bug
