@@ -3,7 +3,7 @@ package edu.deakin.sit707;
 public class ChatMessage {
     private String sender;
     private String message;
-    private String fileName; // optional
+    private String fileName;
 
     public ChatMessage(String sender, String message) {
         this.sender = sender;
