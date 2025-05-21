@@ -1,0 +1,26 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+steps:
+  # Step 1: Debug - list files
+  - name: 'ubuntu'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "=== Root directory contents ==="
+        ls -la
+        echo "=== Task7.2HD directory contents ==="
+        ls -la Task7.2HD
+
+  # Step 2: Run Maven build & tests
+  - name: 'maven:3.8.1-openjdk-11'
+    dir: 'Task7.2HD'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "=== Starting Maven Build ==="
+        mvn clean install
+
+timeout: 900s
