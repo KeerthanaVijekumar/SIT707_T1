@@ -152,18 +152,18 @@ public class TaskFilterTest {
     
   //Failure Test Cases
     // Intentionally failing: assumes Pass includes Credit — simulating a bug
-//    @Test
-//    public void testFail_FilterPassIncludesCredit() {
-//        List<Task> tasks = Arrays.asList(
-//            new Task(1, "Pass"),
-//            new Task(2, "Credit")
-//        );
-//
-//        List<Task> result = TaskFilter.filterTasksByGrade("Pass", tasks);
-//
-//        // Intentionally wrong: this assumes both Pass and Credit are returned (they're not)
-//        assertEquals(2, result.size());
-//        assertTrue(result.contains(new Task(2, "Credit"))); // This will fail
-//    }
+    @Test
+    public void testFail_FilterPassIncludesCredit() {
+        List<Task> tasks = Arrays.asList(
+            new Task(1, "Pass"),
+            new Task(2, "Credit")
+        );
+
+        List<Task> result = TaskFilter.filterTasksByGrade("Pass", tasks);
+
+        // Intentionally wrong: this assumes both Pass and Credit are returned (they're not)
+        assertEquals(2, result.size());
+        assertTrue(result.contains(new Task(2, "Credit"))); // This will fail
+    }
 
 }
